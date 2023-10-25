@@ -1,0 +1,82 @@
+---
+
+# -----------------------------------------------------------------------------
+# distro / os handles
+# -----------------------------------------------------------------------------
+
+__rclone_distro: >-
+  {{ ansible_distribution | lower }}
+
+__rclone_os: >-
+  {{ ansible_os_family | lower }}
+
+__rclone_distro_version: >-
+  {{ __rclone_distro }}_{{ ansible_distribution_major_version }}
+
+__rclone_os_version: >-
+  {{ __rclone_os }}_{{ ansible_distribution_major_version }}
+
+__rclone_system: >-
+  {{ ansible_system | lower }}
+
+# -----------------------------------------------------------------------------
+# first found snippets
+# -----------------------------------------------------------------------------
+
+__rclone_first_found:
+  - '{{ __rclone_distro_version }}'
+  - '{{ __rclone_os_version }}'
+  - '{{ __rclone_distro }}'
+  - '{{ __rclone_os }}'
+  - default
+
+__rclone_install_tasks:
+  files: >-
+    {{
+      __rclone_first_found |
+        map('regex_replace', '^', 'install_') |
+        map('regex_replace', '$', '.yml') |
+        list
+    }}
+  paths:
+    - tasks
+
+# -----------------------------------------------------------------------------
+# binary install
+# -----------------------------------------------------------------------------
+
+__rclone_binstall_arch: >-
+  {{
+    (ansible_architecture == "x86_64") |
+      ternary('amd64', ansible_architecture)
+  }}
+
+__rclone_binstall_suffix: >-
+  v{{ rclone_version }}-{{ __rclone_system }}-{{ __rclone_binstall_arch }}
+
+__rclone_binstall_cache_filename: >-
+  rclone-{{ __rclone_binstall_suffix }}.zip
+
+__rclone_binstall_cache_path: >-
+  {{ rclone_binary_install_cache_dir }}/{{ __rclone_binstall_cache_filename }}
+
+__rclone_binstall_extract_dir: >-
+  {{ rclone_binary_install_cache_dir }}/rclone-{{ __rclone_binstall_suffix }}
+
+__rclone_binstall_extract_path: >-
+  {{ __rclone_binstall_extract_dir }}/rclone
+
+__rclone_binstall_path: >-
+  {{ rclone_binary_install_bin_dir }}/rclone
+
+# -----------------------------------------------------------------------------
+# URL for downloading from GitHub
+# -----------------------------------------------------------------------------
+
+__rclone_github_download_dir: >-
+  https://github.com/rclone/rclone/releases/download/v{{ rclone_version }}
+
+__rclone_github_download_url: >-
+  {{ __rclone_github_download_dir }}/{{ __rclone_binstall_cache_filename }}
+
+...

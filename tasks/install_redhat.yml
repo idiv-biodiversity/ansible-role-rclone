@@ -1,0 +1,9 @@
+---
+
+- name: install rclone from EPEL
+  ansible.builtin.yum:
+    name: rclone
+    enablerepo: epel
+  become: yes
+
+...

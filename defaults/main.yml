@@ -1,0 +1,6 @@
+---
+
+rclone_binary_install_bin_dir: /usr/local/bin
+rclone_binary_install_cache_dir: /var/cache
+
+...

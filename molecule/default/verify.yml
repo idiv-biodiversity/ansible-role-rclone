@@ -1,0 +1,25 @@
+---
+
+- name: verify
+  hosts: all
+  tasks:
+
+    - name: 'check if `rclone --version` works'
+      ansible.builtin.command: rclone --version
+      changed_when: no
+      register: __rclone_version_cmd
+
+    - name: 'debug `rclone --version`'
+      ansible.builtin.debug:
+        var: __rclone_version_cmd
+
+    - name: 'assert on `rclone --version`'
+      ansible.builtin.assert:
+        that:
+          - not __rclone_version_cmd.failed
+          - >-
+            __rclone_version_cmd.stdout |
+              ansible.builtin.regex_search('^rclone v[0-9]+\.[0-9]+')
+        success_msg: '`rclone --version` works'
+
+...

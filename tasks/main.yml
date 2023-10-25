@@ -1,0 +1,14 @@
+---
+
+- name: install from GitHub binary releases
+  ansible.builtin.include_tasks: github-binary-release.yml
+  when:
+    - rclone_version is defined
+
+- name: install rclone via distro package manager
+  ansible.builtin.include_tasks: >-
+    {{ lookup('ansible.builtin.first_found', __rclone_install_tasks) }}
+  when:
+    - rclone_version is not defined
+
+...
