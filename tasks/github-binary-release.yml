@@ -11,7 +11,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   become: yes
 
 - name: 'download rclone from {{ __rclone_github_download_url }}'
@@ -20,7 +20,7 @@
     dest: '{{ __rclone_binstall_cache_path }}'
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   become: yes
   check_mode: no
 
@@ -31,7 +31,7 @@
     dest: '{{ rclone_binary_install_cache_dir }}'
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   become: yes
   check_mode: no
 
@@ -41,7 +41,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   become: yes
 
 - name: 'install to {{ __rclone_binstall_path }}'
@@ -51,7 +51,7 @@
     dest: '{{ __rclone_binstall_path }}'
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   become: yes
 
 ...
