@@ -1,7 +1,7 @@
 ---
 
 - name: install rclone from EPEL
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: rclone
     enablerepo: epel
   become: yes
