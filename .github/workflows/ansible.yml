@@ -25,10 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         distro:
-          - centos-7
-          - centos-8
-          - rocky-8
-          - rocky-9
+          - rockylinux-9
         scenario:
           - default
           - alternative

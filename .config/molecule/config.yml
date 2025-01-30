@@ -1,0 +1,28 @@
+---
+
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+platforms:
+
+  - name: rockylinux-9
+    image: ghcr.io/hspaans/molecule-containers:rockylinux-9
+    pre_build_image: yes
+    privileged: yes
+    groups:
+      - nosudo
+
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      nosudo:
+        ansible_become_method: su
+
+verifier:
+  name: ansible
+
+...
