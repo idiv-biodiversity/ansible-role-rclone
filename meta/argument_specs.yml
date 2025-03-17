@@ -1,0 +1,16 @@
+---
+
+argument_specs:
+  main:
+    options:
+
+      rclone_version:
+        type: str
+
+      rclone_binary_install_bin_dir:
+        type: str
+
+      rclone_binary_install_cache_dir:
+        type: str
+
+...
