@@ -11,7 +11,6 @@ platforms:
   - name: rockylinux-9
     image: ghcr.io/idiv-biodiversity/ansible-molecule-rockylinux-9:latest
     pre_build_image: yes
-    privileged: yes
     groups:
       - nosudo
 
