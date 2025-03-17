@@ -25,6 +25,8 @@ jobs:
       fail-fast: false
       matrix:
         distro:
+          - name: archlinux
+            ansible: 2.18
           - name: rockylinux-9
             ansible: 2.18
         scenario:
