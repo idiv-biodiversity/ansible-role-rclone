@@ -34,7 +34,7 @@ these variables:
 
 ```yml
 # use this to force using binary GitHub release instead of package manager
-rclone_binary_install_version: 1.64.1
+rclone_version: 1.64.1
 
 # these are from defaults/main.yml
 rclone_binary_install_bin_dir: /usr/local/bin
