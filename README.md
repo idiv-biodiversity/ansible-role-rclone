@@ -111,6 +111,6 @@ Centre for Integrative Biodiversity Research (iDiv)][idiv].
 
 
 [rclone]: https://rclone.org
-[author]: https://www.idiv.de/en/groups_and_people/employees/details/61.html
+[author]: https://www.idiv.de/staff/christian-krause/
 [idiv]: https://www.idiv.de/
 [wookietreiber]: https://github.com/wookietreiber
