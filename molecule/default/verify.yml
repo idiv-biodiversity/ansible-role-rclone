@@ -19,7 +19,7 @@
           - not __rclone_version_cmd.failed
           - >-
             __rclone_version_cmd.stdout |
-              ansible.builtin.regex_search('^rclone v[0-9]+\.[0-9]+')
+              ansible.builtin.regex_search('^rclone v[0-9]+\.[0-9]+') is match
         success_msg: '`rclone --version` works'
 
 ...
